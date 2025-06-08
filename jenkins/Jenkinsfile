@@ -1,22 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Example') {
             steps {
-               echo "Build Stage"
-               checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/jeethualex-foss/simple-jenkins-page.git']])
+                echo 'Hello World'
             }
-        }
-        stage('Test') {
-            steps {
-              echo "Test Stage"
-            }
-        }
-        // Additional stages
-    }
-    post {
-        always {
-            echo "This is Jenkinsfile"
         }
     }
 }
