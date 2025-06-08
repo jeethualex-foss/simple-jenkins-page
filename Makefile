@@ -28,7 +28,7 @@ deploy_api:
 
 deploy_jenkins:
 	docker stop jenkins || true && docker rm jenkins || true
-	docker run --name jenkins -d -p 8081:8080 $(image)-jenkins
+	docker run --privileged --name jenkins -d -p 8081:8080 $(image)-jenkins
 
 deploy:
 	docker stop $(app) || true && docker rm $(app) || true
@@ -40,5 +40,7 @@ debug:
 clean:
 	docker rm api -f
 	docker rm $(app) -f
+	docker rm jenkins -f
+	docker rmi $(image)-jenkins -f
 	docker rmi $(image)-api -f
 	docker rmi $(image) -f
