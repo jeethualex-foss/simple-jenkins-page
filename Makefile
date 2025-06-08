@@ -1,4 +1,4 @@
-app :=
+app := simple-jenkins-page
 user :=
 pass :=
 image :=
