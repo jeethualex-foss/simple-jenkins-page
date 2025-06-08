@@ -13,10 +13,8 @@ RUN yum install jenkins -y
 
 RUN mkdir /deployments
 RUN chmod 777 -Rf /deployments
-COPY bakup-jenkins.zip /deployments
-RUN unzip /deployments/bakup-jenkins.zip
-RUN mv bakup-jenkins /root/.jenkins
-RUN rm /deployments/bakup-jenkins.zip
+RUN git clone https://github.com/jeethualex-foss/simple-jenkins-files.git
+RUN mv simple-jenkins-files/bakup-jenkins /root/.jenkins
 
 ENV GIT_HOME=/usr/bin/git
 ENV JAVA_HOME=/etc/alternatives/java_sdk_openjdk
