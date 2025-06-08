@@ -20,7 +20,8 @@ RUN rm /deployments/bakup-jenkins.zip
 
 ENV GIT_HOME=/usr/bin/git
 ENV JAVA_HOME=/etc/alternatives/java_sdk_openjdk
-RUN ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+RUN mkdir /root/.ssh
+RUN ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
 
 WORKDIR /deployments
 
