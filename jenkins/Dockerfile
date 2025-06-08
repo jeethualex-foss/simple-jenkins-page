@@ -3,7 +3,7 @@ FROM redhat/ubi10
 USER root
 
 # Install the application dependencies
-RUN yum install java-21-openjdk wget unzip -y
+RUN yum install java-21-openjdk-devel git wget unzip -y
 
 # Install jenkins
 RUN wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
@@ -17,6 +17,10 @@ COPY bakup-jenkins.zip /deployments
 RUN unzip /deployments/bakup-jenkins.zip
 RUN mv bakup-jenkins /root/.jenkins
 RUN rm /deployments/bakup-jenkins.zip
+
+ENV GIT_HOME=/usr/bin/git
+ENV JAVA_HOME=/etc/alternatives/java_sdk_openjdk
+RUN ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 
 WORKDIR /deployments
 
